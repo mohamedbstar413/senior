@@ -29,8 +29,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                docker build -t $DOCKER_USER/solar-image:latest .
-                docker run -d --name senior-jenkins -p 3000:3000 senior-node-image
+                docker build -t senior-node-image:latest .
+                docker run -d --name senior-jenkins -p 3000:3000 senior-node-image:latest
             '''
                 }
             }
