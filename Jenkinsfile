@@ -1,6 +1,10 @@
 pipeline {
     agent any
 
+    tools {
+        nodejs 'node-js'   // must match the name you set under Manage Jenkins → Tools
+    }
+
     stages {
         stage('Pull Coded') {
             steps {
@@ -32,5 +36,4 @@ pipeline {
             }
         }
     }
-
 }
