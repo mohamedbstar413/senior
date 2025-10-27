@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pull Coded') {
             steps {
-                git branch: 'main', url: 'https://github.com/abdelrahmanonline4/sourcecode.git'
+                git branch: 'main', url: 'https://github.com/mohamedbstar413/senior'
             }
         }
 
