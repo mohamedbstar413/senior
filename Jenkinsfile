@@ -1,16 +1,6 @@
 pipeline {
     agent any
 
-    environment {
-        NODE_ENV = 'production'
-        IMAGE_NAME = 'your-dockerhub-username/node-app'
-    }
-
-    options {
-        timestamps()
-        ansiColor('xterm')
-    }
-
     stages {
         stage('Pull Coded') {
             steps {
@@ -30,13 +20,13 @@ pipeline {
             }
         }
 
-        stage('build, tag and push the image') {
+        stage('build, tag and run the image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
                 echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                docker build -t $DOCKER_USER/senior-node-image:latest .
-                docker push $DOCKER_USER/senior-node-image:latest
+                docker build -t $DOCKER_USER/solar-image:latest .
+                docker run -d --name senior-jenkins -p 3000:3000 senior-node-image
             '''
                 }
             }
