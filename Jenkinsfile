@@ -12,6 +12,12 @@ pipeline {
             }
         }
 
+        stage('Debug'){
+            steps{
+                sh 'ls'
+            }
+        }
+
         stage('install dependencies') {
             steps {
                 sh 'npm install'
