@@ -24,12 +24,6 @@ pipeline {
             }
         }
 
-        stage('build code') {
-            steps {
-                sh 'npm run build'
-            }
-        }
-
         stage('build, tag and run the image') {
             steps {
                 withCredentials([usernamePassword(credentialsId: 'dockerhub', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
